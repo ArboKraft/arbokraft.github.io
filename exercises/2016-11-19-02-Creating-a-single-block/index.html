@@ -364,6 +364,11 @@ So you’ll need to get the Player coordinates and use it as origin.</p>
 <span class="c">#The Grass block ID is 2 :</span>
 <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span></code></pre></figure>
 
+<p>Which should gives you :</p>
+
+<p><img src="https://arbokraft.github.io/images//01-y0-grass.png" alt="Coordinates in Minecraft 2" />
+<em>A block of grass on the ground</em></p>
+
 <p>In this example we’ll put it just below the player :</p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
@@ -372,8 +377,13 @@ So you’ll need to get the Player coordinates and use it as origin.</p>
 <span class="c">#Here we get the player position</span>
 <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
 <span class="c">#Here we will use the block ID name but we could have used </span>
-<span class="c">#57 instead of BLOCK.Diamond_block</span>
-<span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">BLOCK</span><span class="o">.</span><span class="n">diamond_block</span><span class="p">)</span></code></pre></figure>
+<span class="c">#57 instead of block.DIAMOND_BLOCK</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">block</span><span class="o">.</span><span class="n">DIAMOND_BLOCK</span><span class="p">)</span></code></pre></figure>
+
+<p>Which should gives you :</p>
+
+<p><img src="https://arbokraft.github.io/images//01-y-1-diamond.png" alt="Coordinates in Minecraft 2" />
+<em>A block of  diamond below you</em></p>
 
 <p>And now above the ground a purple wool block</p>
 
@@ -385,7 +395,12 @@ So you’ll need to get the Player coordinates and use it as origin.</p>
 <span class="c">#Some blocks have subid, like Wool. Instead of 35 you can use</span>
 <span class="c"># 35,10 to get purple wool for instance or 35,14 for Red . </span>
 <span class="c"># 35,0  or 35 will be white Wool</span>
-<span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span></code></pre></figure>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span></code></pre></figure>
+
+<p>Which should gives you :</p>
+
+<p><img src="https://arbokraft.github.io/images//01-y1-woolviolet.png" alt="Coordinates in Minecraft 2" />
+<em>A block of violet wool above the ground</em></p>
 
 
 			</span>
