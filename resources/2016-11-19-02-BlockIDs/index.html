@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>
 	
-      	Spawning a line of block - While Loop - Modulo
+      	List of Blocks
 	</title>
 	<link rel="stylesheet" type="text/css" href="https://arbokraft.github.io/assets/css/styles_feeling_responsive.css" />
 	<script src="https://arbokraft.github.io/assets/js/modernizr.min.js"></script>
@@ -25,7 +25,7 @@
 
   
 	
-	<meta name="description" content="Spawning a line of block using a while loop" />
+	<meta name="description" content="Here is the list of blocks id used in Minecraft" />
 
 	
 
@@ -107,11 +107,11 @@
 	<!-- Facebook Optimization -->
 	<meta property="og:locale" content="en_EN" />
 	
-	<meta property="og:title" content="Spawning a line of block - While Loop - Modulo" />
+	<meta property="og:title" content="List of Blocks" />
 	<meta property="og:description" content="Learning programing and python the fun way : with Minecraft" />
-	<meta property="og:url" content="https://arbokraft.github.io//exercises/2016-11-19-03-Spawning-line-of-blocks-while/" />
+	<meta property="og:url" content="https://arbokraft.github.io//resources/2016-11-19-02-BlockIDs/" />
 	<meta property="og:site_name" content="ArboKraft" />
-	<meta property="og:image" content="https://arbokraft.github.io/images/line-thumb.png" />
+	<meta property="og:image" content="https://arbokraft.github.io/images/01-console-thumb.png" />
 
 	
 
@@ -325,142 +325,20 @@
 			<header>
 				
 				<span itemprop="name">
-					<p class="subheadline">Exercise 04</p>
-					<h1>Spawning a line of block - While Loop - Modulo</h1>
+					<p class="subheadline">BlockID list</p>
+					<h1>List of Blocks</h1>
 				</span>
 			</header>
 
 
 			
 			<p class="teaser" itemprop="description">
-				Spawning a line of block using a while loop
+				Here is the list of blocks id used in Minecraft
 			</p>
 			
 
 			<span itemprop="articleSection">
-			<ul>
-  <li>Note : We will saw “setBlocks” in Exercice 3. It allows line creation in an easier (yet less modular) way *</li>
-</ul>
-
-<blockquote>
-  <p>The while construct consists of a block of code and a condition/expression. The condition/expression is evaluated, and if the condition/expression is true, the code within the block is executed. This repeats until the condition/expression becomes false. Because the while loop checks the condition/expression before the block is executed, the control structure is often also known as a pre-test loop. Compare this with the do while loop, which tests the condition/expression after the loop has executed. <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></p>
-</blockquote>
-
-<p>First let’s create a line made of say 10 blocks of Spruce Wood Plank (id : 5:1)</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
-<span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
-<span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
-
-<span class="c">#Here we get the player position</span>
-<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
-
-<span class="c">#We will set the number of blocks we want in a variable</span>
-<span class="n">size</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="c">#We will use a counter to store the number we already built.</span>
-<span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="c">#And here is the while loop. </span>
-<span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
-<span class="c">#We create our block and at each iteration we will set new one next to previous one</span>
-  <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">counter</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="c">#We need to increment our counter each time we set a block to get the expected result</span>
-  <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span><span class="o">+</span><span class="mi">1</span>
-<span class="c">#The Loop will stop when counter will be equal to size</span></code></pre></figure>
-
-<p>And here is what you should get :
-<img src="https://arbokraft.github.io/images/04-line-wood.png" alt="10 blocks line of Spruce Wood Plank" />
-<em>10 blocks line of Spruce Wood Plank</em></p>
-
-<p>You can play with size to see this line growing.
-We can also play with the subid of the wood at each iteration using a modulo.</p>
-
-<blockquote>
-  <p>In computing, the modulo operation finds the remainder after division of one number by another (sometimes called modulus). <sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup></p>
-</blockquote>
-
-<p>So for instance for modulo 6</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Source</td>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-      <td>4</td>
-      <td>5</td>
-      <td>6</td>
-      <td>7</td>
-      <td>8</td>
-      <td>9</td>
-      <td>10</td>
-      <td>11</td>
-      <td>12</td>
-      <td>13</td>
-      <td>etc.</td>
-    </tr>
-    <tr>
-      <td>Modulo 6</td>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-      <td>4</td>
-      <td>5</td>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-      <td>4</td>
-      <td>5</td>
-      <td>0</td>
-      <td>1</td>
-      <td>etc.</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>We’ll use this to alternate on the kind of wood.
-5 modulo 6 in python will be written 5 % 6</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
-<span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
-<span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
-
-<span class="c">#Here we get the player position</span>
-<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
-
-<span class="c">#We will set the number of blocks we want in a variable</span>
-<span class="n">size</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="c">#We will use a counter to store the number we already built.</span>
-<span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="c">#And here is the while loop. </span>
-<span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
-<span class="c">#We create our block and at each iteration we will set new one next to previous one and the kind of wood will move to next subid</span>
-  <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">counter</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">counter</span><span class="o">%</span><span class="mi">6</span><span class="p">)</span>
-<span class="c">#We need to increment our counter each time we set a block to get the expected result</span>
-  <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span><span class="o">+</span><span class="mi">1</span>
-<span class="c">#The Loop will stop when counter will be equal to size</span></code></pre></figure>
-
-<p>And voila !
-<img src="https://arbokraft.github.io/images/04-line-wood-modulo.png" alt="10 blocks line of alternating Wood Plank" />
-<em>10 blocks line of alternating Wood Plank</em></p>
-
-<p>You can do the same with Wool (35) and a module 16.</p>
-
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p>https://en.wikipedia.org/wiki/While_loop <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:2">
-      <p>https://en.wikipedia.org/wiki/Modulo_operation <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
+			<p>Blocks</p>
 
 			</span>
 
@@ -477,16 +355,16 @@ We can also play with the subid of the wood at each iteration using a modulo.</p
 				
 
 				
-			   <span class="icon-archive pr20"><a href="https://arbokraft.github.io/category/exercises"> exercises</a></span>
+			   <span class="icon-archive pr20"><a href="https://arbokraft.github.io/category/resources"> resources</a></span>
 				<br />
-				<span class="pr20"><span class="icon-price-tag pr10">exercises</span> </span>
+				<span class="pr20"><span class="icon-price-tag pr10">resources</span> </span>
 			</p>
 
 			<div id="post-nav" class="row">
 				
-				<div class="small-2 columns text-center"><a class="radius button small" href="https://arbokraft.github.io/blog/archive/" title="Blog Archive">Archive</a></div><!-- /.small-4.columns -->
+				<div class="small-5 columns"><a class="button small radius next" href="https://arbokraft.github.io/resources/2016-11-19-01-Functions/">&laquo; List of Functions</a></div><!-- /.small-4.columns -->
 				
-				<div class="small-5 columns text-right"><a class="button small radius next" href="https://arbokraft.github.io/exercises/2016-11-19-04-Message-in-console3/">Message in console 3 &raquo;</a></div><!-- /.small-4.columns -->
+				<div class="small-2 columns text-center"><a class="radius button small" href="https://arbokraft.github.io/blog/archive/" title="Blog Archive">Archive</a></div><!-- /.small-4.columns -->
 				
 			</div>
 			</div><!--  /.page-meta -->
@@ -641,8 +519,8 @@ We can also play with the subid of the wood at each iteration using a modulo.</p
 
 
 <script>
-    $("#masthead").backstretch("https://arbokraft.github.io/images/line-header.png", {fade: 700});
-    $("#masthead-with-text").backstretch("https://arbokraft.github.io/images/line-header.png", {fade: 700});
+    $("#masthead").backstretch("https://arbokraft.github.io/images/flat-grass-header.png", {fade: 700});
+    $("#masthead-with-text").backstretch("https://arbokraft.github.io/images/flat-grass-header.png", {fade: 700});
 </script>
 
 
