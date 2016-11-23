@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>
 	
-      	Message in console 2
+      	Spawning a line of block - While Loop
 	</title>
 	<link rel="stylesheet" type="text/css" href="https://arbokraft.github.io/assets/css/styles_feeling_responsive.css" />
 	<script src="https://arbokraft.github.io/assets/js/modernizr.min.js"></script>
@@ -25,7 +25,7 @@
 
   
 	
-	<meta name="description" content="How to write a message in he console 2" />
+	<meta name="description" content="Spawning a line of block using a while loop" />
 
 	
 
@@ -107,11 +107,11 @@
 	<!-- Facebook Optimization -->
 	<meta property="og:locale" content="en_EN" />
 	
-	<meta property="og:title" content="Message in console 2" />
+	<meta property="og:title" content="Spawning a line of block - While Loop" />
 	<meta property="og:description" content="Learning programing and python the fun way : with Minecraft" />
-	<meta property="og:url" content="https://arbokraft.github.io//exercises/2016-11-19-03-Message-in-console2/" />
+	<meta property="og:url" content="https://arbokraft.github.io//exercises/2016-11-19-03-Spawning-line-of-blocks-while/" />
 	<meta property="og:site_name" content="ArboKraft" />
-	<meta property="og:image" content="https://arbokraft.github.io/images/you-can-delete-me-thumb.png" />
+	<meta property="og:image" content="https://arbokraft.github.io/images/line-thumb.png" />
 
 	
 
@@ -299,7 +299,7 @@
 	
 
 	
-<div id="masthead-no-image-header">
+<div id="masthead">
 	<div class="row">
 		<div class="small-12 columns">
 			<a id="logo" href="https://arbokraft.github.io" title="ArboKraft – Python with Minecraft">
@@ -313,30 +313,98 @@
 
 
 
+
+
+
+
+
+
 	<div class="row t30">
 	<div class="medium-8 columns medium-offset-2 end">
 		<article itemscope itemtype="http://schema.org/Article">
 			<header>
 				
 				<span itemprop="name">
-					<p class="subheadline">02</p>
-					<h1>Message in console 2</h1>
+					<p class="subheadline">03</p>
+					<h1>Spawning a line of block - While Loop</h1>
 				</span>
 			</header>
 
 
 			
 			<p class="teaser" itemprop="description">
-				How to write a message in he console 2
+				Spawning a line of block using a while loop
 			</p>
 			
 
 			<span itemprop="articleSection">
-			<p>Hello
-<img src="https://arbokraft.github.io/images//ekans-arbok.png" alt="Ekans and Arbok" /></p>
+			<ul>
+  <li>Note : We will see the command “setBlocks” in Exercice 4. It allows line creation in an easier (yet less modular) way *</li>
+</ul>
+
+<blockquote>
+  <p>The while construct consists of a block of code and a condition/expression. The condition/expression is evaluated, and if the condition/expression is true, the code within the block is executed. This repeats until the condition/expression becomes false. Because the while loop checks the condition/expression before the block is executed, the control structure is often also known as a pre-test loop. Compare this with the do while loop, which tests the condition/expression after the loop has executed. <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></p>
+</blockquote>
+
+<p>First let’s create a line made of say 10 blocks of grass</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
+<span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
+
+<span class="c">#Here we get the player position</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
+
+<span class="c">#We will set the number of blocks we want in a variable</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c">#We will use a counter to store the number we already built.</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c">#And here is the while loop. </span>
+<span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
+  <span class="c">#We create our block and at each iteration we will set new one next to previous one</span>
+  <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">counter</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+  <span class="c">#We need to increment our counter each time we set a block to get the expected result</span>
+  <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span><span class="o">+</span><span class="mi">1</span></code></pre></figure>
+
+<p>And here is what you should get :</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>https://en.wikipedia.org/wiki/While_loop <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
 			</span>
 
+			
+						<div id="page-meta" class="t30">
+				<p>
+					<!-- Look the author details up from the site config. -->
+					
+					<!-- Output author details if some exist. -->
+					
+
+				
+				<time class="icon-calendar pr20" datetime="2016-11-19" itemprop="datePublished"> 2016-11-19</time>
+				
+
+				
+			   <span class="icon-archive pr20"><a href="https://arbokraft.github.io/category/exercises"> exercises</a></span>
+				<br />
+				<span class="pr20"><span class="icon-price-tag pr10">exercises</span> </span>
+			</p>
+
+			<div id="post-nav" class="row">
+				
+				<div class="small-2 columns text-center"><a class="radius button small" href="https://arbokraft.github.io/blog/archive/" title="Blog Archive">Archive</a></div><!-- /.small-4.columns -->
+				
+				<div class="small-5 columns text-right"><a class="button small radius next" href="https://arbokraft.github.io/exercises/2016-11-19-04-Message-in-console3/">Message in console 3 &raquo;</a></div><!-- /.small-4.columns -->
+				
+			</div>
+			</div><!--  /.page-meta -->
 			
 
 			
@@ -486,6 +554,11 @@
 <script src="https://arbokraft.github.io/assets/js/javascript.min.js"></script>
 
 
+
+<script>
+    $("#masthead").backstretch("https://arbokraft.github.io/images/line-header.png", {fade: 700});
+    $("#masthead-with-text").backstretch("https://arbokraft.github.io/images/line-header.png", {fade: 700});
+</script>
 
 
 
