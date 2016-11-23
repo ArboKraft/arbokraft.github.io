@@ -325,7 +325,7 @@
 			<header>
 				
 				<span itemprop="name">
-					<p class="subheadline">03</p>
+					<p class="subheadline">Exercise 04</p>
 					<h1>Spawning a line of block - While Loop - Modulo</h1>
 				</span>
 			</header>
@@ -339,7 +339,7 @@
 
 			<span itemprop="articleSection">
 			<ul>
-  <li>Note : We will see the command “setBlocks” in Exercice 4. It allows line creation in an easier (yet less modular) way *</li>
+  <li>Note : We will saw “setBlocks” in Exercice 3. It allows line creation in an easier (yet less modular) way *</li>
 </ul>
 
 <blockquote>
@@ -369,7 +369,7 @@
 <span class="c">#The Loop will stop when counter will be equal to size</span></code></pre></figure>
 
 <p>And here is what you should get :
-<img src="https://arbokraft.github.io/images/03-line-wood.png" alt="10 blocks line of Spruce Wood Plank" />
+<img src="https://arbokraft.github.io/images/04-line-wood.png" alt="10 blocks line of Spruce Wood Plank" />
 <em>10 blocks line of Spruce Wood Plank</em></p>
 
 <p>You can play with size to see this line growing.
@@ -439,15 +439,17 @@ We can also play with the subid of the wood at each iteration using a modulo.</p
 
 <span class="c">#And here is the while loop. </span>
 <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
-<span class="c">#We create our block and at each iteration we will set new one next to previous one</span>
+<span class="c">#We create our block and at each iteration we will set new one next to previous one and the kind of wood will move to next subid</span>
   <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">counter</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">counter</span><span class="o">%</span><span class="mi">6</span><span class="p">)</span>
 <span class="c">#We need to increment our counter each time we set a block to get the expected result</span>
   <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span><span class="o">+</span><span class="mi">1</span>
 <span class="c">#The Loop will stop when counter will be equal to size</span></code></pre></figure>
 
 <p>And voila !
-<img src="https://arbokraft.github.io/images/03-line-wood-modulo.png" alt="10 blocks line of alternating Wood Plank" />
+<img src="https://arbokraft.github.io/images/04-line-wood-modulo.png" alt="10 blocks line of alternating Wood Plank" />
 <em>10 blocks line of alternating Wood Plank</em></p>
+
+<p>You can do the same with Wool (35) and a module 16.</p>
 
 <div class="footnotes">
   <ol>
