@@ -450,7 +450,27 @@ We can also play with the subid of the wood at each iteration using a modulo.</p
 <img src="https://arbokraft.github.io/images/04-line-wood-modulo.png" alt="10 blocks line of alternating Wood Plank" />
 <em>10 blocks line of alternating Wood Plank</em></p>
 
-<p>You can do the same with Wool (35) and a module 16.</p>
+<p>We can do the same with Wool (35) and a module 16 (as there are 16 color of wool). We’ll also make a diagonal playing with the z coordinate as well</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
+<span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
+
+<span class="c">#Here we get the player position</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
+
+<span class="c">#We will set the number of blocks we want in a variable</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="c">#We will use a counter to store the number we already built.</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c">#And here is the while loop. </span>
+<span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
+<span class="c">#We create our block and at each iteration we will move x and z from 1 so we'll get a diagonal</span>
+  <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">counter</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">counter</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="n">counter</span><span class="o">%</span><span class="mi">16</span><span class="p">)</span>
+<span class="c">#We need to increment our counter each time we set a block to get the expected result</span>
+  <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span><span class="o">+</span><span class="mi">1</span>
+<span class="c">#The Loop will stop when counter will be equal to size</span></code></pre></figure>
 
 <div class="footnotes">
   <ol>
@@ -488,8 +508,6 @@ We can also play with the subid of the wood at each iteration using a modulo.</p
 				<div class="small-5 columns"><a class="button small radius next" href="https://arbokraft.github.io/exercises/2016-11-19-03-Creating-Basic-Line-Surface-Volume/">&laquo; Message in console 3</a></div><!-- /.small-4.columns -->
 				
 				<div class="small-2 columns text-center"><a class="radius button small" href="https://arbokraft.github.io/blog/archive/" title="Blog Archive">Archive</a></div><!-- /.small-4.columns -->
-				
-				<div class="small-5 columns text-right"><a class="button small radius next" href="https://arbokraft.github.io/exercises/2016-11-19-05-Message-in-console4/">Message in console 4 &raquo;</a></div><!-- /.small-4.columns -->
 				
 			</div>
 			</div><!--  /.page-meta -->

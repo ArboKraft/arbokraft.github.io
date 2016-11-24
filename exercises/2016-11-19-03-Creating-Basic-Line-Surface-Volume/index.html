@@ -333,8 +333,76 @@
 			
 
 			<span itemprop="articleSection">
-			<p>Hello
-<img src="https://arbokraft.github.io/images//ekans-arbok.png" alt="Ekans and Arbok" /></p>
+			<p>We will now look at the setBlocks command which allow the creation of a volume of blocks between two coordinates</p>
+
+<p>First well draw a 10 blocks line</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
+<span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
+
+<span class="c">#Here we get the player position</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
+
+<span class="c">#We will set the number of blocks we want in a variable</span>
+<span class="n">lenght</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c">#We create our line between x and x+10</span>
+  <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">lenght</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span></code></pre></figure>
+
+<p>We can create a surface the same way</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
+<span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
+
+<span class="c">#Here we get the player position</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
+
+<span class="c">#We will set the size we want to reach</span>
+<span class="n">xsize</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">zsize</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c">#We create our surface</span>
+  <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xsize</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">zsize</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span></code></pre></figure>
+
+<p>And modifying y as well we’ll get a 3 dimension volume</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
+<span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
+
+<span class="c">#Here we get the player position</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
+
+<span class="c">#We will set the size we want to reach</span>
+<span class="n">xsize</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">zsize</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c">#We create our volume</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xsize</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">height</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">zsize</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span></code></pre></figure>
+
+<p>To “delete” a block you just have to fill it with air (0)</p>
+
+<p>So we can create a volume with a “tunnel” inside this way :</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
+<span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
+
+<span class="c">#Here we get the player position</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
+
+<span class="c">#We will set the size we want to reach</span>
+<span class="n">xsize</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">zsize</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="c">#We create our volume</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xsize</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">height</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">zsize</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="c">#We create inside a volume of "air"</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">xsize</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xsize</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">zsize</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span></code></pre></figure>
 
 			</span>
 
