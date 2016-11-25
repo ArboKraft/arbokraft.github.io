@@ -348,7 +348,7 @@
 <span class="n">lenght</span> <span class="o">=</span> <span class="mi">10</span>
 
 <span class="c">#We create our line between x and x+10</span>
-  <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">lenght</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span></code></pre></figure>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">lenght</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span></code></pre></figure>
 
 <p>We can create a surface the same way</p>
 
@@ -364,7 +364,7 @@
 <span class="n">zsize</span> <span class="o">=</span> <span class="mi">5</span>
 
 <span class="c">#We create our surface</span>
-  <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xsize</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">zsize</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span></code></pre></figure>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xsize</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">zsize</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span></code></pre></figure>
 
 <p>And modifying y as well we’ll get a 3 dimension volume</p>
 
@@ -381,7 +381,7 @@
 <span class="n">height</span> <span class="o">=</span> <span class="mi">4</span>
 
 <span class="c">#We create our volume</span>
-<span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xsize</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">height</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">zsize</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span></code></pre></figure>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xsize</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">height</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">zsize</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span></code></pre></figure>
 
 <p>To “delete” a block you just have to fill it with air (0)</p>
 
@@ -400,9 +400,9 @@
 <span class="n">height</span> <span class="o">=</span> <span class="mi">8</span>
 
 <span class="c">#We create our volume</span>
-<span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xsize</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">height</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">zsize</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xsize</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">height</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">zsize</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 <span class="c">#We create inside a volume of "air"</span>
-<span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">xsize</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xsize</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">zsize</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span></code></pre></figure>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">xsize</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xsize</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">zsize</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span></code></pre></figure>
 
 			</span>
 
