@@ -5,14 +5,14 @@
 -->
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20120731 at Sat Nov 26 19:29:19 2016
+Created by FontForge 20120731 at Sat Nov 26 19:41:22 2016
  By maninb,,,
 Created by maninb,,, with FontForge 2.0 (http://fontforge.sf.net)
 </metadata>
 <defs>
-<font id="fontcustom" horiz-adv-x="512" >
+<font id="iconfont" horiz-adv-x="512" >
   <font-face 
-    font-family="fontcustom"
+    font-family="iconfont"
     font-weight="500"
     font-stretch="normal"
     units-per-em="512"
