@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>https://arbokraft.github.io/</id>
 	<title>ArboKraft</title>
-	<updated>2016-11-26T15:14:28+01:00</updated>
+	<updated>2016-11-26T15:16:00+01:00</updated>
 
 	<subtitle>Learning programing and python the fun way : with Minecraft</subtitle>
 
@@ -46,10 +46,11 @@
 				</author>
 			
 			<summary>Here we go !!</summary>
-			<content type="html" xml:base="https://arbokraft.github.io/blog/Welcome-to-ArboKraft/">&lt;p&gt;Welcome to ArboKraft !
-&lt;img src=&quot;https://arbokraft.github.io/images//ekans-arbok.png&quot; alt=&quot;Ekans and Arbok&quot; /&gt;
-We shared our first exercises and will be updating with new one from time to time.
-We hope you’ll find those useful !&lt;/p&gt;
+			<content type="html" xml:base="https://arbokraft.github.io/blog/Welcome-to-ArboKraft/">&lt;p&gt;Welcome to ArboKraft !&lt;br /&gt;
+&lt;img src=&quot;https://arbokraft.github.io/images//ekans-arbok.png&quot; alt=&quot;Ekans and Arbok&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Done. We published our first exercises and will be updating with new one from time to time.&lt;br /&gt;
+We hope you’ll find those useful !&lt;br /&gt;&lt;/p&gt;
 </content>
 
 			
