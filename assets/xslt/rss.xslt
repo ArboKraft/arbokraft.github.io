@@ -8,6 +8,7 @@
 		<xsl:text disable-output-escaping="yes"><![CDATA[
 			<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="google-site-verification" content="N-JBqJN5_06qcywB-2eFtN0iY6PJkldj_DZZDlmgCEA" />
 	<title>
 	
       	RSS Feed (Styled)
