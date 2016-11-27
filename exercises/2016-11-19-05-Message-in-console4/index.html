@@ -315,7 +315,7 @@
 
 
 	<div class="row t30">
-	<div class="medium-8 columns medium-offset-2 end">
+	<div class="medium-12 columns medium-offset-2 end">
 		<article itemscope itemtype="http://schema.org/Article">
 			<header>
 				
@@ -335,21 +335,15 @@
 			<span itemprop="articleSection">
 			<p>So we’ll create first a chess Board.</p>
 
-<p>If you look carefully at a board you’ll notice that there is one color when the parity is the same for x and z.
+<p>If you look carefully at a board you’ll notice that there is one color when the parity is the same for x and z, and the other color when parity is different.
 See :
-<img src="https://arbokraft.github.io/images/exercises/05-echiquier.png" alt="Chess Board : same parity - same color " /></p>
-<ul>
-  <li>Chess board, one color if parity is the same, another color if parity is different*</li>
-</ul>
+<img src="https://arbokraft.github.io/images/exercises/05-echiquier.png" alt="Chess Board : same parity - same color " />
+<em>Chess board, one color if parity is the same, another color if parity is different</em></p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
 <span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
-<span class="kn">import</span> <span class="nn">server</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">random</span>
 <span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
-<span class="n">mc</span><span class="o">.</span><span class="n">postToChat</span><span class="p">(</span><span class="s">"Echec et Mat ! "</span><span class="p">)</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">postToChat</span><span class="p">(</span><span class="s">"Checkmate ! "</span><span class="p">)</span>
 <span class="c">#Here i get the player position</span>
 <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
@@ -357,7 +351,7 @@ See :
 <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">+</span><span class="mi">1</span>
 
     
-<span class="n">size</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="c">#We will have 2 loop, so we need to integer.</span>
 <span class="n">i</span><span class="o">=</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">material</span> <span class="o">=</span> <span class="mi">0</span>
