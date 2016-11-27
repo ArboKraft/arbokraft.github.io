@@ -333,7 +333,54 @@
 			
 
 			<span itemprop="articleSection">
-			<p>Exercise 5 here</p>
+			<p>So we’ll create first a chess Board.</p>
+
+<p>If you look carefully at a board you’ll notice that there is one color when the parity is the same for x and z.
+See :
+<img src="https://arbokraft.github.io/images/exercises/05-echiquier.png" alt="Chess Board : same parity - same color " /></p>
+<ul>
+  <li>Chess board, one color if parity is the same, another color if parity is different*</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
+<span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
+<span class="kn">import</span> <span class="nn">server</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">postToChat</span><span class="p">(</span><span class="s">"Echec et Mat ! "</span><span class="p">)</span>
+<span class="c">#Here i get the player position</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">+</span><span class="mi">1</span>
+
+    
+<span class="n">size</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="c">#We will have 2 loop, so we need to integer.</span>
+<span class="n">i</span><span class="o">=</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">material</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c">#We will loop on x with i</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+<span class="c">#We initiate counter for nested loop</span>
+    <span class="n">j</span><span class="o">=</span> <span class="mi">0</span>
+<span class="c">#We will loop on z with j</span>
+    <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span>
+<span class="c">#Chess Board simple</span>
+<span class="c">#Here we use the modulo 2 to figure  parity. If it equal 0 then it's even otherwise it's odd.</span>
+<span class="c">#In our case we check that both have same parity and affect a materials...otherwise setting another one</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="n">j</span><span class="o">%</span><span class="mi">2</span><span class="p">):</span>
+<span class="c">#49 is Bosidian : black</span>
+            <span class="n">material</span> <span class="o">=</span> <span class="mi">49</span>
+        <span class="k">else</span><span class="p">:</span>
+<span class="c">#155 is Quartz : white.</span>
+            <span class="n">material</span> <span class="o">=</span> <span class="mi">155</span>
+        <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">material</span><span class="p">)</span></code></pre></figure>
+
+<p>And here is what you should get :</p>
 
 			</span>
 
