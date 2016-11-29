@@ -471,36 +471,6 @@ Here is one example :</p>
 <p><img src="https://arbokraft.github.io/images/exercises/05-3Dchessair.png" alt="ChessBoard Cube mode with air" />
 <em>Cube of air and quartz</em></p>
 
-<p>Now we’ll create a pyramid of wool alternating colors.</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
-<span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
-<span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
-
-<span class="c">#Here we store the current position of the player</span>
-<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
-<span class="c">#We don't want to spawn stuff on the player itself so we will take a position just near him</span>
-<span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span>
-<span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="o">+</span><span class="mi">1</span>
-
-
-<span class="c">#We will use only one variable that will change the color, the size and height of the current surface</span>
-<span class="n">i</span><span class="o">=</span><span class="mi">0</span>
-<span class="c">#There are 16 color of wool so this is the size we'll choose</span>
-<span class="n">size</span><span class="o">=</span><span class="mi">16</span>
-<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
-<span class="c">#We need two coordinates for the surface and we rotate the color of the wool (35)</span>
-    <span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">size</span><span class="o">*</span><span class="mi">2</span><span class="o">-</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">size</span><span class="o">*</span><span class="mi">2</span><span class="o">-</span><span class="n">i</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="n">i</span><span class="o">%</span><span class="mi">16</span><span class="p">)</span>
-<span class="c">#This commented line would give you instead a cube</span>
-    <span class="c">#mc.setBlocks(x+i,y+i,z+i,x+size,y+i,z+size,35,i%16)</span>
-    <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span></code></pre></figure>
-
-<p>This should give you this:<br />
-<img src="https://arbokraft.github.io/images/exercises/05-woolpyramid.png" alt="16 step pyramid of wool" />
-<em>16 colored stage pyramid of wool</em></p>
-
-<p>We will add soon more example playing with more color (wool)</p>
-
 			</span>
 
 			
