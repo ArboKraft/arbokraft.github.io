@@ -471,6 +471,36 @@ Here is one example :</p>
 <p><img src="https://arbokraft.github.io/images/exercises/05-3Dchessair.png" alt="ChessBoard Cube mode with air" />
 <em>Cube of air and quartz</em></p>
 
+<p>Here is now the code to generate a colored cube :</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
+<span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
+<span class="c">#Here we get the player position</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">+</span><span class="mi">1</span>
+
+    
+<span class="n">size</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="n">k</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">while</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
+    <span class="n">j</span><span class="o">=</span><span class="mi">0</span> 
+    <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
+        <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
+<span class="c">#The color will be dependant on the 3 coordinates. You can play a lot with the color and see what is happening</span>
+<span class="c">#when you make variation on one or two coordinates</span>
+            <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">k</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="mi">35</span><span class="p">,(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="o">+</span><span class="n">k</span><span class="p">)</span><span class="o">%</span><span class="mi">16</span> <span class="p">)</span>
+            <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">j</span><span class="o">=</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span></code></pre></figure>
+
+<p><img src="https://arbokraft.github.io/images/exercises/05-coloredcube.png" alt="Colored cube" />
+<em>Colored cube</em></p>
+
 			</span>
 
 			
