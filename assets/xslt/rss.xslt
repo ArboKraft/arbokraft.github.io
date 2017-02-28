@@ -29,7 +29,7 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic|Volkhov' rel='stylesheet' type='text/css' />
   </noscript>
 
-  
+  <meta name="google-site-verification" content="N-JBqJN5_06qcywB-2eFtN0iY6PJkldj_DZZDlmgCEA" />
 	
 	<meta name="description" content="Learning programing and python the fun way : with Minecraft" />
 

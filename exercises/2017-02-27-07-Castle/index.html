@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>
 	
-      	More while loop (nested) and third dimension
+      	Some Pyramids
 	</title>
 	<link rel="stylesheet" type="text/css" href="https://arbokraft.github.io/assets/css/styles_feeling_responsive.css" />
     <link rel="stylesheet" type="text/css" href="https://arbokraft.github.io/assets/css/font-awesome.min.css" />
@@ -26,7 +26,7 @@
 
   <meta name="google-site-verification" content="N-JBqJN5_06qcywB-2eFtN0iY6PJkldj_DZZDlmgCEA" />
 	
-	<meta name="description" content="We&#39;ll play with 3D: y" />
+	<meta name="description" content="Different way to build Pyramids" />
 
 	
 
@@ -108,11 +108,11 @@
 	<!-- Facebook Optimization -->
 	<meta property="og:locale" content="en_EN" />
 	
-	<meta property="og:title" content="More while loop (nested) and third dimension" />
+	<meta property="og:title" content="Some Pyramids" />
 	<meta property="og:description" content="Learning programing and python the fun way : with Minecraft" />
-	<meta property="og:url" content="https://arbokraft.github.io//exercises/2016-11-19-05-MoreLoop-3D/" />
+	<meta property="og:url" content="https://arbokraft.github.io//exercises/2017-02-27-07-Castle/" />
 	<meta property="og:site_name" content="ArboKraft" />
-	<meta property="og:image" content="https://arbokraft.github.io/images/exercises/05-thumb.png" />
+	<meta property="og:image" content="https://arbokraft.github.io/images/exercises/06-thumb.png" />
 
 	
 
@@ -320,185 +320,187 @@
 			<header>
 				
 				<span itemprop="name">
-					<p class="subheadline">Exercise 5</p>
-					<h1>More while loop (nested) and third dimension</h1>
+					<p class="subheadline">Exercise 6</p>
+					<h1>Some Pyramids</h1>
 				</span>
 			</header>
 
 
 			
 			<p class="teaser" itemprop="description">
-				We'll play with 3D: y
+				Different way to build Pyramids
 			</p>
 			
 
 			<span itemprop="articleSection">
-			<p>So we’ll create first a chess Board.</p>
-
-<p>If you look carefully at a board you’ll notice that there is one color when the parity is the same for x and z, and the other color when parity is different.
-See :<br />
-<img src="https://arbokraft.github.io/images/exercises/05-echiquier.png" alt="Chess Board : same parity - same color " />
-<em>Chess board, one color if parity is the same, another color if parity is different</em></p>
+			<p>To build our pyramid we will use a simple model (not perfect but easy to code):<br />
+<img src="https://arbokraft.github.io/images/exercises/06-modelpyramid.png" alt="Basic pyramid model" />
+<em>Simplistic model of pyramid</em></p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
 <span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
 <span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
-<span class="n">mc</span><span class="o">.</span><span class="n">postToChat</span><span class="p">(</span><span class="s">"Checkmate ! "</span><span class="p">)</span>
-<span class="c">#Here we get the player position</span>
+
+<span class="c">#Here we store the current position of the player
+</span>
 <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
-<span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">+</span><span class="mi">1</span>
+<span class="c">#We don't want to spawn stuff on the player itself so we will take a position just near him
+</span>
+<span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="o">+</span><span class="mi">1</span>
 
-    
-<span class="n">size</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="c">#We will have 2 loop, so we need to integer.</span>
-<span class="n">i</span><span class="o">=</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">material</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="c">#We will loop on x with i</span>
+
+<span class="c">#We will use only one variable that will change the color, the size and height of the current surface
+</span>
+<span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+<span class="c">#The size of our pyramid
+</span>
+<span class="n">size</span><span class="o">=</span><span class="mi">16</span>
+<span class="n">width</span><span class="o">=</span><span class="mi">16</span>
 <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
-<span class="c">#We initiate counter for nested loop</span>
-    <span class="n">j</span><span class="o">=</span> <span class="mi">0</span>
-<span class="c">#We will loop on z with j</span>
-    <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
-        <span class="n">j</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span>
-<span class="c">#Chess Board simple</span>
-<span class="c">#Here we use the modulo 2 to figure  parity. If it equal 0 then it's even otherwise it's odd.</span>
-<span class="c">#In our case we check that both have same parity and affect a materials...otherwise setting another one</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="n">j</span><span class="o">%</span><span class="mi">2</span><span class="p">):</span>
-<span class="c">#49 is obsidian : black</span>
-            <span class="n">material</span> <span class="o">=</span> <span class="mi">49</span>
-        <span class="k">else</span><span class="p">:</span>
-<span class="c">#155 is quartz : white.</span>
-            <span class="n">material</span> <span class="o">=</span> <span class="mi">155</span>
-        <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">material</span><span class="p">)</span></code></pre></figure>
+<span class="c">#We need two coordinates for each level of the pyramid - Sand is 12
+</span>
+    <span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">width</span><span class="o">*</span><span class="mi">2</span><span class="o">-</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">width</span><span class="o">*</span><span class="mi">2</span><span class="o">-</span><span class="n">i</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span></code></pre></figure>
 
-<p>And here is what you should get :<br />
-<img src="https://arbokraft.github.io/images/exercises/05-chessboard.png" alt="Chess Board in Minecraft" />
-<em>Chessboard, with python in Minecraft</em></p>
+<p>Here is what you should get:<br />
+<img src="https://arbokraft.github.io/images/exercises/06-sandpyramid.png" alt="Pyramid of sand" />
+<em>pyramid of sand</em></p>
 
-<p>You can then play with the modulo and see the result.
-Here is one example :</p>
+<p>Now we’ll create a pyramid of wool alternating colors.<br /></p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
 <span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
 <span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
-<span class="c">#Here we get the player position</span>
+
+<span class="c">#Here we store the current position of the player
+</span>
 <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
-<span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">+</span><span class="mi">1</span>
+<span class="c">#We don't want to spawn stuff on the player itself so we will take a position just near him
+</span>
+<span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="o">+</span><span class="mi">1</span>
 
-    
-<span class="n">size</span> <span class="o">=</span> <span class="mi">17</span>
-<span class="c">#We will have 2 loops, so we'll need two integers.</span>
-<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">material</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="c">#We will loop on x with i</span>
+
+<span class="c">#We will use only one variable that will change the color, the size and height of the current surface
+</span>
+<span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+<span class="c">#There are 16 color of wool so this is the size we'll choose
+</span>
+<span class="n">size</span><span class="o">=</span><span class="mi">16</span>
 <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
-<span class="c">#We initiate counter for nested loop</span>
-    <span class="n">j</span><span class="o">=</span> <span class="mi">0</span>
-<span class="c">#We will loop on z with j</span>
-    <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
-        <span class="n">j</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span>
-<span class="c">#Chess Board fun --  Next line is the only modification compared to previous loop - We use a modulo 4 and play with conditions</span>
-        <span class="k">if</span> <span class="p">(((</span><span class="n">i</span><span class="o">%</span><span class="mi">4</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="ow">and</span><span class="p">(</span><span class="n">j</span><span class="o">%</span><span class="mi">4</span><span class="p">)</span> <span class="o">&lt;</span><span class="mi">3</span> <span class="p">)</span> <span class="ow">or</span> <span class="p">((</span><span class="n">i</span><span class="o">%</span><span class="mi">4</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span><span class="p">(</span><span class="n">j</span><span class="o">%</span><span class="mi">4</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="p">)):</span>
-<span class="c">#49 is obsidian : black</span>
-            <span class="n">material</span> <span class="o">=</span> <span class="mi">49</span>
-        <span class="k">else</span><span class="p">:</span>
-<span class="c">#155 is quartz : white.</span>
-            <span class="n">material</span> <span class="o">=</span> <span class="mi">155</span>
-        <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">material</span><span class="p">)</span></code></pre></figure>
+<span class="c">#We need two coordinates for the surface and we rotate the color of the wool (35)
+</span>
+    <span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">size</span><span class="o">*</span><span class="mi">2</span><span class="o">-</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">size</span><span class="o">*</span><span class="mi">2</span><span class="o">-</span><span class="n">i</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="n">i</span><span class="o">%</span><span class="mi">16</span><span class="p">)</span>
+<span class="c">#This commented line would give you instead a cube
+</span>
+    <span class="c">#mc.setBlocks(x+i,y+i,z+i,x+size,y+i,z+size,35,i%16)
+</span>
+    <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span></code></pre></figure>
 
-<p>Which will gives you : <br />
-<img src="https://arbokraft.github.io/images/exercises/05-chessboardfun.png" alt="ChessBoard - Other conditions" />
-<em>Chessboard..sort of… with python in Minecraft</em></p>
+<p>This should give you this:<br />
+<img src="https://arbokraft.github.io/images/exercises/06-woolpyramid.png" alt="16 step pyramid of wool" />
+<em>16 colored stage pyramid of wool</em></p>
 
-<p>Now we will add a dimension and have a cube of alternated chessboard</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
-<span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
-<span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
-<span class="c">#Here we get the player position</span>
-<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
-<span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">+</span><span class="mi">1</span>
-
-    
-<span class="n">size</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="c">#We will have 3 loops, so we'll need three integers.</span>
-<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">material</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="c">#We will loop on x with i</span>
-<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
-<span class="c">#We initiate counter for nested loop</span>
-    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="c">#We will loop on z with j</span>
-    <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
-        <span class="n">j</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span>
-        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">while</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
-            <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span>
-<span class="c">#Here we use the modulo 2 to figure  parity. If it equal 0 then it's even otherwise it's odd.</span>
-<span class="c">#In our case we check that both have same parity and affect a materials...otherwise setting another one</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="n">j</span><span class="o">%</span><span class="mi">2</span><span class="p">):</span>
-<span class="c">#then we choose one color if our k is even or the other</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span><span class="mi">0</span> <span class="p">):</span>
-<span class="c">#49 is obsidian : black</span>
-                    <span class="n">material</span> <span class="o">=</span> <span class="mi">49</span>
-                <span class="k">else</span><span class="p">:</span>
-<span class="c">#155 is quartz : white.</span>
-                    <span class="n">material</span> <span class="o">=</span> <span class="mi">155</span>
-<span class="c">#Then we have to do the opposite for same k when i and j does not have same parity</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span><span class="mi">0</span> <span class="p">):</span>
-                    <span class="n">material</span> <span class="o">=</span> <span class="mi">155</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">material</span> <span class="o">=</span> <span class="mi">49</span>
-            <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">k</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">material</span><span class="p">)</span></code></pre></figure>
-
-<p>Which will gives you :<br />
-<img src="https://arbokraft.github.io/images/exercises/05-3Dchess.png" alt="ChessBoard Cube mode" />
-<em>Cube of alternate material</em></p>
-
-<p>If you change obsidian (49) for air (0) result is quite nice :<br />
-<img src="https://arbokraft.github.io/images/exercises/05-3Dchessair.png" alt="ChessBoard Cube mode with air" />
-<em>Cube of air and quartz</em></p>
-
-<p>Here is now the code to generate a colored cube :<br /></p>
+<p>We tried to make the same pyramid going in diagonal on x and z. It end up being not so easy.
+To break down the algorythm, the idea is to create first a diagonal, <br /></p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
 <span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
-<span class="c">#Here we get the player position</span>
+
+<span class="c">#Here we get the player position
+</span>
 <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
-<span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">+</span><span class="mi">1</span>
+<span class="c">#We'll use reference near this position
+</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">2</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">+</span><span class="mi">2</span>
+<span class="c">#We will set the number of blocks we want in a variable
+</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="c">#We will use a i to store the number we already built.
+</span>
+<span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
+    <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="mi">24</span><span class="p">)</span>
+    <span class="n">i</span>  <span class="o">=</span> <span class="n">i</span> <span class="o">+</span><span class="mi">1</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span></code></pre></figure>
 
-    
-<span class="n">size</span> <span class="o">=</span> <span class="mi">12</span>
+<p><img src="https://arbokraft.github.io/images/exercises/06-piercedpyramid_1.png" alt="Pierced Pyramid in Diagonal - First line" />
+<em>Pierced Pyramid in Diagonal - First line</em></p>
 
+<p>then to have this diagonal repeated on the same level (this will give you a air/sandtone chess board in diagonal)<br /></p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
+<span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
+
+<span class="c">#Here we get the player position
+</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">2</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">+</span><span class="mi">2</span>
+<span class="c">#We will set the number of blocks we want in a variable
+</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="c">#We will use a j to store the number of diagonal we already built.
+</span>
+<span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
+   <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c">#We will use a j to store the number of block in the current diagonal we already built
+</span>
+   <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
+       <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="mi">24</span><span class="p">)</span>
+       <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+       <span class="n">j</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span>
+   <span class="n">i</span>  <span class="o">=</span> <span class="n">i</span> <span class="o">+</span><span class="mi">1</span> </code></pre></figure>
+
+<p><img src="https://arbokraft.github.io/images/exercises/06-piercedpyramid_2.png" alt="Pierced Pyramid in Diagonal - Floor" />
+<em>Pierced Pyramid in Diagonal - Floor</em></p>
+
+<p>then to loop of this at each level knowing we want it to be smaller .<br /></p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
+<span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
+
+<span class="c">#Here we get the player position
+</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">2</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">+</span><span class="mi">2</span>
+<span class="c">#We will set the number of blocks we want in a variable
+</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="c">#We will use a k for the size
+</span>
 <span class="n">k</span><span class="o">=</span><span class="mi">0</span>
 <span class="k">while</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
-    <span class="n">j</span><span class="o">=</span><span class="mi">0</span> 
-    <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
-        <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
-        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
-<span class="c">#The color will be dependant on the 3 coordinates. You can play a lot with the color </span>
-<span class="c"># and see what is happening when you make variation on one or two coordinates</span>
-            <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">k</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="mi">35</span><span class="p">,(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="o">+</span><span class="n">k</span><span class="p">)</span><span class="o">%</span><span class="mi">16</span> <span class="p">)</span>
-            <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
-        <span class="n">j</span><span class="o">=</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+<span class="c">#We will use i to repeat our diagonal
+</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">-</span><span class="n">k</span><span class="p">:</span>
+       <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c">#We will use j to loop over one of our diagonal
+</span>
+       <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">-</span><span class="n">k</span><span class="p">:</span>
+           <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">k</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="o">+</span><span class="n">k</span><span class="p">,</span><span class="mi">24</span><span class="p">)</span>
+<span class="c">#We use a timer so we can see the pyramid drawing slowly
+</span>
+           <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+           <span class="n">j</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span>
+       <span class="n">i</span>  <span class="o">=</span> <span class="n">i</span> <span class="o">+</span><span class="mi">1</span>
     <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span></code></pre></figure>
 
-<p>And here is our colored cube:<br />
-<img src="https://arbokraft.github.io/images/exercises/05-coloredcube.png" alt="Colored cube" />
-<em>Colored cube</em></p>
+<p>This should give you this:<br /></p>
+
+<p><img src="https://arbokraft.github.io/images/exercises/06-piercedpyramid.png" alt="Pierced Pyramid in Diagonal" />
+<em>Pierced Pyramid in Diagonal</em></p>
 
 			</span>
 
