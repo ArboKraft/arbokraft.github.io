@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>
 	
-      	Some Pyramids
+      	Modular Castle
 	</title>
 	<link rel="stylesheet" type="text/css" href="https://arbokraft.github.io/assets/css/styles_feeling_responsive.css" />
     <link rel="stylesheet" type="text/css" href="https://arbokraft.github.io/assets/css/font-awesome.min.css" />
@@ -26,7 +26,7 @@
 
   <meta name="google-site-verification" content="N-JBqJN5_06qcywB-2eFtN0iY6PJkldj_DZZDlmgCEA" />
 	
-	<meta name="description" content="Different way to build Pyramids" />
+	<meta name="description" content="A generated castle " />
 
 	
 
@@ -108,11 +108,11 @@
 	<!-- Facebook Optimization -->
 	<meta property="og:locale" content="en_EN" />
 	
-	<meta property="og:title" content="Some Pyramids" />
+	<meta property="og:title" content="Modular Castle" />
 	<meta property="og:description" content="Learning programing and python the fun way : with Minecraft" />
 	<meta property="og:url" content="https://arbokraft.github.io//exercises/2017-02-27-07-Castle/" />
 	<meta property="og:site_name" content="ArboKraft" />
-	<meta property="og:image" content="https://arbokraft.github.io/images/exercises/06-thumb.png" />
+	<meta property="og:image" content="https://arbokraft.github.io/images/exercises/07-thumb.png" />
 
 	
 
@@ -320,48 +320,115 @@
 			<header>
 				
 				<span itemprop="name">
-					<p class="subheadline">Exercise 6</p>
-					<h1>Some Pyramids</h1>
+					<p class="subheadline">Exercise 7</p>
+					<h1>Modular Castle</h1>
 				</span>
 			</header>
 
 
 			
 			<p class="teaser" itemprop="description">
-				Different way to build Pyramids
+				A generated castle 
 			</p>
 			
 
 			<span itemprop="articleSection">
-			<p>To build our pyramid we will use a simple model (not perfect but easy to code):<br />
-<img src="https://arbokraft.github.io/images/exercises/06-modelpyramid.png" alt="Basic pyramid model" />
-<em>Simplistic model of pyramid</em></p>
+			<p>So here is some code we build to generate a castle. 
+We will adapt soon for it to ask size , height etc…
+We’ll also add more details to it.</p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
 <span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
-<span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
-
-<span class="c">#Here we store the current position of the player
-</span>
+<span class="kn">import</span> <span class="nn">server</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">server</span><span class="o">.</span><span class="n">address</span><span class="p">)</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">postToChat</span><span class="p">(</span><span class="s">"Kimi"</span><span class="p">)</span>
 <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
-<span class="c">#We don't want to spawn stuff on the player itself so we will take a position just near him
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">2</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">+</span><span class="mi">2</span>
+<span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span>
+<span class="c">#Our tower targeted dimensions
 </span>
-<span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span>
-<span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">ytower</span><span class="o">=</span><span class="mi">16</span>
+<span class="n">xtower</span><span class="o">=</span><span class="mi">20</span>
+<span class="n">ztower</span><span class="o">=</span><span class="mi">15</span>
+<span class="c">#Ceiling heigh
+</span>
+<span class="n">yceiling</span><span class="o">=</span><span class="mi">5</span>
+<span class="c">#Windows schee
+</span>
+<span class="n">Lwindows</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">lwindows</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">ywindows</span><span class="o">=</span><span class="mi">2</span>
+<span class="c">#Tower Materials
+</span>
+<span class="n">m_wall</span><span class="o">=</span><span class="mi">98</span>
+<span class="n">m_corner</span><span class="o">=</span><span class="mi">49</span>
+<span class="n">m_windows</span><span class="o">=</span><span class="mi">102</span>
+<span class="c">#Douves size
+</span>
+<span class="n">LDouves</span><span class="o">=</span><span class="mi">1</span>
+<span class="c">#Douves offset
+</span>
+<span class="n">ODouves</span><span class="o">=</span><span class="mi">3</span>
+<span class="c">#Profondeur douves
+</span>
+<span class="n">yDouves</span><span class="o">=</span><span class="mi">10</span>
+<span class="c">#Fixing Size
+</span>
+<span class="n">LDouves</span><span class="o">=</span><span class="n">LDouves</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">ODouves</span><span class="o">=</span><span class="n">ODouves</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">yDouves</span><span class="o">=</span><span class="n">yDouves</span><span class="o">-</span><span class="mi">1</span>
+<span class="c">#Calculating the real tower size
+</span>
+<span class="k">while</span> <span class="n">xtower</span><span class="o">%</span><span class="n">Lwindows</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">xtower</span> <span class="o">=</span> <span class="n">xtower</span><span class="o">+</span><span class="mi">1</span>
+<span class="k">while</span> <span class="n">ztower</span><span class="o">%</span><span class="n">Lwindows</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">ztower</span> <span class="o">=</span> <span class="n">ztower</span><span class="o">+</span><span class="mi">1</span>
+<span class="k">while</span> <span class="n">ytower</span><span class="o">%</span><span class="n">yceiling</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span> 
+    <span class="n">ytower</span> <span class="o">=</span> <span class="n">ytower</span><span class="o">+</span><span class="mi">1</span>
+<span class="c">#adapting larger
+</span>
+<span class="n">xtower</span><span class="o">=</span><span class="n">xtower</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">ztower</span><span class="o">=</span><span class="n">ztower</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">ytower</span><span class="o">=</span><span class="n">ytower</span>
 
 
-<span class="c">#We will use only one variable that will change the color, the size and height of the current surface
+<span class="c">#We build main volume
 </span>
-<span class="n">i</span><span class="o">=</span><span class="mi">0</span>
-<span class="c">#The size of our pyramid
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xtower</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">ytower</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">ztower</span><span class="p">,</span><span class="n">m_wall</span><span class="p">)</span>
+<span class="c">#We draw the 4 borders
 </span>
-<span class="n">size</span><span class="o">=</span><span class="mi">16</span>
-<span class="n">width</span><span class="o">=</span><span class="mi">16</span>
-<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
-<span class="c">#We need two coordinates for each level of the pyramid - Sand is 12
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">ODouves</span><span class="o">-</span><span class="n">LDouves</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="n">yDouves</span><span class="p">,</span><span class="n">z</span><span class="o">-</span><span class="n">ODouves</span><span class="o">-</span><span class="n">LDouves</span><span class="p">,</span><span class="n">x</span><span class="o">-</span><span class="n">ODouves</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">ztower</span><span class="o">+</span><span class="n">ODouves</span><span class="o">+</span><span class="n">LDouves</span><span class="p">,</span><span class="mi">326</span><span class="p">)</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">ODouves</span><span class="o">-</span><span class="n">LDouves</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="n">yDouves</span><span class="p">,</span><span class="n">z</span><span class="o">-</span><span class="n">ODouves</span><span class="o">-</span><span class="n">LDouves</span><span class="p">,</span><span class="n">x</span><span class="o">++</span><span class="n">xtower</span><span class="o">+</span><span class="n">ODouves</span><span class="o">+</span><span class="n">LDouves</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">-</span><span class="n">ODouves</span><span class="p">,</span><span class="mi">326</span><span class="p">)</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">xtower</span><span class="o">+</span><span class="n">ODouves</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="n">yDouves</span><span class="p">,</span><span class="n">z</span><span class="o">-</span><span class="n">ODouves</span><span class="o">-</span><span class="n">LDouves</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xtower</span><span class="o">+</span><span class="n">ODouves</span><span class="o">+</span><span class="n">LDouves</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">ztower</span><span class="o">+</span><span class="n">ODouves</span><span class="o">+</span><span class="n">LDouves</span><span class="p">,</span><span class="mi">326</span><span class="p">)</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">ODouves</span><span class="o">-</span><span class="n">LDouves</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="n">yDouves</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">ztower</span><span class="o">+</span><span class="n">ODouves</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xtower</span><span class="o">+</span><span class="n">ODouves</span><span class="o">+</span><span class="n">LDouves</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">ztower</span><span class="o">+</span><span class="n">ODouves</span><span class="o">+</span><span class="n">LDouves</span><span class="p">,</span><span class="mi">326</span><span class="p">)</span>
+<span class="c">#We draw the 4 douves
 </span>
-    <span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">width</span><span class="o">*</span><span class="mi">2</span><span class="o">-</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">width</span><span class="o">*</span><span class="mi">2</span><span class="o">-</span><span class="n">i</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
-    <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span></code></pre></figure>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">ytower</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">m_corner</span><span class="p">)</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">xtower</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xtower</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">ytower</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">m_corner</span><span class="p">)</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">ztower</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">ytower</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">ztower</span><span class="p">,</span><span class="n">m_corner</span><span class="p">)</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">xtower</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">ztower</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xtower</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">ytower</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">ztower</span><span class="p">,</span><span class="n">m_corner</span><span class="p">)</span>
+<span class="c">#We fill with air
+</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xtower</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">ytower</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">ztower</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="c">#We create a floor at level 5
+</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ytower</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="n">yceiling</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">xtower</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">ztower</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="c">#We place the windows
+</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xtower</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ztower</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="n">xtower</span><span class="p">)</span> <span class="ow">and</span> <span class="n">j</span><span class="o">%</span><span class="n">Lwindows</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">((</span><span class="n">j</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">j</span> <span class="o">==</span> <span class="n">ztower</span><span class="p">)</span> <span class="ow">and</span> <span class="n">i</span><span class="o">%</span><span class="n">Lwindows</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ytower</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">k</span> <span class="o">%</span><span class="n">yceiling</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="n">mc</span><span class="o">.</span><span class="n">setBlocks</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">k</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">k</span><span class="o">+</span><span class="n">ywindows</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">m_windows</span><span class="p">)</span>
+                <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">j</span><span class="o">=</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span></code></pre></figure>
 
 <p>Here is what you should get:<br />
 <img src="https://arbokraft.github.io/images/exercises/06-sandpyramid.png" alt="Pyramid of sand" />
@@ -459,48 +526,11 @@ To break down the algorythm, the idea is to create first a diagonal, <br /></p>
        <span class="n">j</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span>
    <span class="n">i</span>  <span class="o">=</span> <span class="n">i</span> <span class="o">+</span><span class="mi">1</span> </code></pre></figure>
 
-<p><img src="https://arbokraft.github.io/images/exercises/06-piercedpyramid_2.png" alt="Pierced Pyramid in Diagonal - Floor" />
-<em>Pierced Pyramid in Diagonal - Floor</em></p>
+<p><img src="https://arbokraft.github.io/images/exercises/07-Castle1.png" alt="Castle Example 1" />
+*Castle 1 - *</p>
 
-<p>then to loop of this at each level knowing we want it to be smaller .<br /></p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">mcpi.minecraft</span> <span class="kn">as</span> <span class="nn">minecraft</span>
-<span class="kn">import</span> <span class="nn">mcpi.block</span> <span class="kn">as</span> <span class="nn">block</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="n">mc</span> <span class="o">=</span> <span class="n">minecraft</span><span class="o">.</span><span class="n">Minecraft</span><span class="p">()</span>
-
-<span class="c">#Here we get the player position
-</span>
-<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">2</span>
-<span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">+</span><span class="mi">2</span>
-<span class="c">#We will set the number of blocks we want in a variable
-</span>
-<span class="n">size</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="c">#We will use a k for the size
-</span>
-<span class="n">k</span><span class="o">=</span><span class="mi">0</span>
-<span class="k">while</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
-    <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
-<span class="c">#We will use i to repeat our diagonal
-</span>
-    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">-</span><span class="n">k</span><span class="p">:</span>
-       <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="c">#We will use j to loop over one of our diagonal
-</span>
-       <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">-</span><span class="n">k</span><span class="p">:</span>
-           <span class="n">mc</span><span class="o">.</span><span class="n">setBlock</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">k</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="o">+</span><span class="n">k</span><span class="p">,</span><span class="mi">24</span><span class="p">)</span>
-<span class="c">#We use a timer so we can see the pyramid drawing slowly
-</span>
-           <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
-           <span class="n">j</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span>
-       <span class="n">i</span>  <span class="o">=</span> <span class="n">i</span> <span class="o">+</span><span class="mi">1</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span></code></pre></figure>
-
-<p>This should give you this:<br /></p>
-
-<p><img src="https://arbokraft.github.io/images/exercises/06-piercedpyramid.png" alt="Pierced Pyramid in Diagonal" />
-<em>Pierced Pyramid in Diagonal</em></p>
+<p><img src="https://arbokraft.github.io/images/exercises/07-Castle2.png" alt="Castle Example 2" />
+*Castle 2 - *</p>
 
 			</span>
 
